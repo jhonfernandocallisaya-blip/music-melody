@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarka – Music Melody</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14172B; --panel:#20233C; --line:#2A2C42;
+    --text:#F4F1E8; --text-muted:#9694AC;
+    --gold:#D4AF37; --coral:#D85A30; --teal:#5DCAA5;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--navy);color:var(--text);
+    font-family:'Work Sans', sans-serif;
+    background-image:repeating-linear-gradient(to bottom, transparent 0 39px, rgba(244,241,232,0.03) 39px 40px);
+  }
+  header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--line);}
+  .back{color:var(--text-muted);text-decoration:none;font-size:14px;}
+  h1{font-family:'Fraunces', serif;font-weight:500;font-size:26px;margin:0;text-align:center;}
+  main{max-width:640px;margin:0 auto;padding:24px 20px 60px;}
+  nav.tabs{display:flex;gap:6px;margin-bottom:28px;border-bottom:1px solid var(--line);}
+  nav.tabs button{flex:1;background:none;border:none;color:var(--text-muted);font-size:13px;padding:12px 4px;border-bottom:2px solid transparent;cursor:pointer;}
+  nav.tabs button.active{color:var(--gold);border-bottom-color:var(--gold);}
+  section.panel{display:none;}
+  section.panel.active{display:block;}
+  p{line-height:1.7;color:var(--text-muted);font-size:15px;}
+  h2{font-family:'Fraunces',serif;font-weight:500;font-size:19px;margin:0 0 12px;}
+  h3{font-family:'Fraunces',serif;font-weight:500;font-size:16px;margin:20px 0 8px;}
+
+  /* Simulador */
+  .flute-body{display:flex;justify-content:center;margin:28px 0 8px;}
+  .hole{
+    width:34px;height:34px;border-radius:50%;border:2px solid var(--text-muted);
+    background:transparent;cursor:pointer;margin:0 6px;
+  }
+  .hole.covered{background:var(--gold);border-color:var(--gold);}
+  .hole-row{display:flex;align-items:center;justify-content:center;}
+  .sim-hint{font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:6px;}
+  #blow-btn{
+    display:block;margin:22px auto 0;background:var(--gold);color:var(--navy);
+    border:none;border-radius:22px;padding:12px 30px;font-size:14px;font-weight:500;cursor:pointer;
+  }
+  #blow-btn.blowing{background:var(--coral);color:var(--text);}
+  #sim-note{text-align:center;margin-top:12px;font-family:'Fraunces',serif;font-size:22px;color:var(--text-muted);}
+
+  /* Afinador */
+  .tuner-card{background:var(--panel);border-radius:16px;padding:20px;text-align:center;}
+  #note-display{font-family:'Fraunces',serif;font-size:44px;margin:10px 0 4px;}
+  #cents-display{font-size:12px;color:var(--text-muted);margin-bottom:10px;}
+  #mic-btn{background:var(--gold);color:var(--navy);border:none;border-radius:22px;padding:10px 26px;font-size:13px;font-weight:500;cursor:pointer;margin-top:14px;}
+  #mic-btn.listening{background:var(--coral);color:var(--text);}
+  #tuner-status{font-size:12px;color:var(--text-muted);margin-top:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back">&lt; volver</a>
+  <h1>Tarka</h1>
+  <span style="width:48px;"></span>
+</header>
+
+<main>
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="historia">historia</button>
+    <button class="tab-btn" data-tab="teoria">teoria</button>
+    <button class="tab-btn" data-tab="simulador">simulador</button>
+    <button class="tab-btn" data-tab="afinador">afinador</button>
+  </nav>
+
+  <section class="panel active" id="historia">
+    <h2>Un poco de historia</h2>
+    <p>La tarka es un instrumento de viento de origen prehispánico, propio de las culturas aymara y quechua del altiplano andino, presente en territorios que hoy son Bolivia, Perú y el norte de Argentina y Chile. Se talla en una sola pieza de madera dura, con una boquilla tipo silbato (por eso no necesita lengüeta ni técnica de embocadura como la flauta traversa).</p>
+    <p>Tradicionalmente se toca en grupos numerosos llamados "tropas", formados por tarkas de distintos tamaños que suenan juntas en octavas, durante la época de lluvias en fiestas como la Anata andina o el Pujllay, como parte de rituales agrícolas y de agradecimiento a la Pachamama. Su sonido grueso y ligeramente áspero es una de sus características más distintivas.</p>
+  </section>
+
+  <section class="panel" id="teoria">
+    <h2>Teoría básica</h2>
+    <p>La tarka es una flauta de conducto (como una flauta dulce): el aire entra por un canal interno tallado en la boquilla que lo dirige directamente contra un borde afilado, por lo que no requiere controlar el ángulo del soplido como en la flauta traversa.</p>
+    <h3>Digitación y escala</h3>
+    <p>Suele tener 6 agujeros en la parte frontal. Tapando distintas combinaciones se logra una escala diatónica, aunque su afinación tradicional no siempre coincide de forma exacta con el temperamento occidental, lo que le da su color característico dentro de la música andina.</p>
+    <h3>¿Por qué afinar antes de tocar?</h3>
+    <p>Como se toca en grupo dentro de una tropa, mantener una afinación consistente es clave para que las distintas tarkas suenen bien juntas. Revisa la pestaña de Afinador antes de practicar.</p>
+  </section>
+
+  <section class="panel" id="simulador">
+    <h2>Simulador</h2>
+    <p class="sim-hint">Tapa los agujeros que quieras y mantén presionado "soplar" para escuchar la nota. Digitación simplificada con fines educativos, no la técnica completa de la tarka real.</p>
+    <div class="flute-body hole-row" id="holes">
+      <div class="hole" data-index="0"></div>
+      <div class="hole" data-index="1"></div>
+      <div class="hole" data-index="2"></div>
+      <div class="hole" data-index="3"></div>
+      <div class="hole" data-index="4"></div>
+      <div class="hole" data-index="5"></div>
+    </div>
+    <button id="blow-btn">soplar</button>
+    <div id="sim-note">--</div>
+  </section>
+
+  <section class="panel" id="afinador">
+    <h2>Afinador cromático</h2>
+    <div class="tuner-card">
+      <p style="font-size:12px;color:var(--text-muted);margin:0;">Detecta cualquier nota — ideal para instrumentos de viento como la tarka.</p>
+      <svg viewBox="0 0 280 190" width="100%" style="max-width:280px;">
+        <circle cx="140" cy="120" r="95" fill="none" stroke="#2A2C42" stroke-width="10"/>
+        <circle id="dial-arc" cx="140" cy="120" r="95" fill="none" stroke="#5DCAA5" stroke-width="10" stroke-dasharray="30 567" stroke-dashoffset="-268" stroke-linecap="round"/>
+        <g id="needle" transform="rotate(0 140 120)"><line x1="140" y1="120" x2="140" y2="45" stroke="#F4F1E8" stroke-width="3" stroke-linecap="round"/></g>
+        <circle cx="140" cy="120" r="6" fill="#F4F1E8"/>
+      </svg>
+      <div id="note-display">--</div>
+      <div id="cents-display">toca o canta una nota</div>
+      <button id="mic-btn">activar micrófono</button>
+      <div id="tuner-status">detenido</div>
+    </div>
+  </section>
+</main>
+
+<script>
+// ---------- Cambio de pestañas ----------
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+    if(btn.dataset.tab !== 'afinador') stopTuner();
+  });
+});
+
+// ---------- Simulador: agujeros + soplar ----------
+// Digitacion simplificada: la nota depende de cuantos agujeros estan tapados (0 a 6).
+const FINGERING = [
+  {covered:6, note:'Re',  freq:293.66},
+  {covered:5, note:'Mi',  freq:329.63},
+  {covered:4, note:'Fa#', freq:369.99},
+  {covered:3, note:'Sol', freq:392.00},
+  {covered:2, note:'La',  freq:440.00},
+  {covered:1, note:'Si',  freq:493.88},
+  {covered:0, note:'Do#', freq:554.37}
+];
+
+let simCtx, blowVoice = null;
+const holes = document.querySelectorAll('.hole');
+const blowBtn = document.getElementById('blow-btn');
+const simNote = document.getElementById('sim-note');
+
+holes.forEach(hole=>{
+  hole.addEventListener('click', ()=>{
+    hole.classList.toggle('covered');
+    if(blowVoice) startBlow();
+  });
+});
+
+function coveredCount(){
+  return document.querySelectorAll('.hole.covered').length;
+}
+function getCurrentNote(){
+  const count = coveredCount();
+  return FINGERING.find(f=>f.covered===count) || FINGERING[0];
+}
+
+function startBlow(){
+  if(!simCtx) simCtx = new (window.AudioContext||window.webkitAudioContext)();
+  if(blowVoice) stopBlowVoiceOnly();
+  const note = getCurrentNote();
+  simNote.textContent = note.note;
+  const osc = simCtx.createOscillator();
+  const osc2 = simCtx.createOscillator();
+  const gain = simCtx.createGain();
+  osc.type = 'sawtooth';   // timbre mas grueso/aspero, caracteristico de la tarka
+  osc2.type = 'square';
+  osc.frequency.value = note.freq;
+  osc2.frequency.value = note.freq;
+  osc2.detune.value = 8; // ligero desafine para dar textura "aspera"
+  gain.gain.setValueAtTime(0.0001, simCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.16, simCtx.currentTime + 0.12);
+  osc.connect(gain);
+  osc2.connect(gain);
+  gain.connect(simCtx.destination);
+  osc.start(); osc2.start();
+  blowVoice = {osc, osc2, gain};
+}
+
+function stopBlowVoiceOnly(){
+  if(!blowVoice) return;
+  const {osc, osc2} = blowVoice;
+  osc.stop(simCtx.currentTime + 0.02);
+  osc2.stop(simCtx.currentTime + 0.02);
+}
+
+function stopBlow(){
+  if(!blowVoice) return;
+  const {osc, osc2, gain} = blowVoice;
+  gain.gain.cancelScheduledValues(simCtx.currentTime);
+  gain.gain.setValueAtTime(gain.gain.value, simCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.0001, simCtx.currentTime + 0.15);
+  osc.stop(simCtx.currentTime + 0.2);
+  osc2.stop(simCtx.currentTime + 0.2);
+  blowVoice = null;
+  blowBtn.classList.remove('blowing');
+}
+
+blowBtn.addEventListener('mousedown', ()=>{ blowBtn.classList.add('blowing'); startBlow(); });
+blowBtn.addEventListener('mouseup', stopBlow);
+blowBtn.addEventListener('mouseleave', stopBlow);
+blowBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); blowBtn.classList.add('blowing'); startBlow(); });
+blowBtn.addEventListener('touchend', stopBlow);
+
+// ---------- Afinador cromatico ----------
+let audioCtx, analyser, micStream, rafId;
+const micBtn = document.getElementById('mic-btn');
+const noteDisplay = document.getElementById('note-display');
+const centsDisplay = document.getElementById('cents-display');
+const statusEl = document.getElementById('tuner-status');
+const needle = document.getElementById('needle');
+const NOTE_NAMES = ['Do','Do#','Re','Re#','Mi','Fa','Fa#','Sol','Sol#','La','La#','Si'];
+
+micBtn.addEventListener('click', ()=>{
+  if(micBtn.classList.contains('listening')) stopTuner();
+  else startTuner();
+});
+
+async function startTuner(){
+  try{
+    micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+  } catch(err){
+    statusEl.textContent = 'no se pudo acceder al microfono';
+    return;
+  }
+  audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+  analyser = audioCtx.createAnalyser();
+  analyser.fftSize = 2048;
+  const source = audioCtx.createMediaStreamSource(micStream);
+  source.connect(analyser);
+  micBtn.classList.add('listening');
+  micBtn.textContent = 'detener';
+  statusEl.textContent = 'escuchando...';
+  detectPitch();
+}
+
+function stopTuner(){
+  if(rafId) cancelAnimationFrame(rafId);
+  if(micStream) micStream.getTracks().forEach(t=>t.stop());
+  if(audioCtx) audioCtx.close();
+  micBtn.classList.remove('listening');
+  micBtn.textContent = 'activar microfono';
+  statusEl.textContent = 'detenido';
+}
+
+function detectPitch(){
+  const buffer = new Float32Array(analyser.fftSize);
+  analyser.getFloatTimeDomainData(buffer);
+  const freq = autoCorrelate(buffer, audioCtx.sampleRate);
+  if(freq > 0) updateTunerUI(freq);
+  rafId = requestAnimationFrame(detectPitch);
+}
+
+function autoCorrelate(buf, sampleRate){
+  const SIZE = buf.length;
+  let rms = 0;
+  for(let i=0;i<SIZE;i++) rms += buf[i]*buf[i];
+  rms = Math.sqrt(rms/SIZE);
+  if(rms < 0.01) return -1;
+
+  let r1=0, r2=SIZE-1, thres=0.2;
+  for(let i=0;i<SIZE/2;i++){ if(Math.abs(buf[i])<thres){ r1=i; break; } }
+  for(let i=1;i<SIZE/2;i++){ if(Math.abs(buf[SIZE-i])<thres){ r2=SIZE-i; break; } }
+  const trimmed = buf.slice(r1,r2);
+  const newSize = trimmed.length;
+
+  const c = new Array(newSize).fill(0);
+  for(let lag=0; lag<newSize; lag++){
+    for(let i=0; i<newSize-lag; i++) c[lag] += trimmed[i]*trimmed[i+lag];
+  }
+  let d=0; while(c[d]>c[d+1]) d++;
+  let maxVal=-1, maxPos=-1;
+  for(let i=d;i<newSize;i++){ if(c[i]>maxVal){ maxVal=c[i]; maxPos=i; } }
+  if(maxPos<=0) return -1;
+  return sampleRate/maxPos;
+}
+
+function freqToNote(freq){
+  const midi = 69 + 12*Math.log2(freq/440);
+  const rounded = Math.round(midi);
+  const cents = (midi - rounded) * 100;
+  const name = NOTE_NAMES[((rounded % 12) + 12) % 12];
+  const octave = Math.floor(rounded/12) - 1;
+  return {name, octave, cents};
+}
+
+function updateTunerUI(freq){
+  const {name, octave, cents} = freqToNote(freq);
+
+  noteDisplay.textContent = name;
+  const roundedCents = Math.round(cents);
+  centsDisplay.textContent = name + octave + ' . ' + (roundedCents>0?'+':'') + roundedCents + ' cents';
+
+  const clamped = Math.max(-50, Math.min(50, cents));
+  const angle = (clamped/50) * 40;
+  needle.setAttribute('transform', 'rotate('+angle+' 140 120)');
+
+  const dialArc = document.getElementById('dial-arc');
+  if(Math.abs(cents) < 5){
+    dialArc.setAttribute('stroke', '#5DCAA5');
+    statusEl.textContent = 'afinado';
+  } else {
+    dialArc.setAttribute('stroke', '#D4AF37');
+    statusEl.textContent = cents>0 ? 'un poco alta' : 'un poco baja';
+  }
+}
+</script>
+
+</body>
+</html>
