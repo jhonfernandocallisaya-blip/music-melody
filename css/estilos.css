@@ -1,0 +1,332 @@
+:root {
+  --bg-dark: #14172B;
+  --bg-card: #1F2444;
+  --accent-gold: #E3A857;
+  --accent-coral: #E2665A;
+  --accent-teal: #4FB6A6;
+  --texto-claro: #F4F1E8;
+  --texto-muted: #9DA0C2;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--texto-claro);
+  line-height: 1.5;
+}
+
+/* --- Encabezado --- */
+.encabezado {
+  position: relative;
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 27px,
+      rgba(244, 241, 232, 0.06) 27px,
+      rgba(244, 241, 232, 0.06) 28px
+    );
+  background-position: center 1rem;
+  background-size: 100% 140px;
+  background-repeat: no-repeat;
+}
+
+.contenido-encabezado h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+.contenido-encabezado p {
+  color: var(--texto-muted);
+  font-size: 1.05rem;
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+/* --- Sección instrumentos --- */
+main {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.titulo-seccion {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--texto-claro);
+}
+
+.menu-instrumentos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.tarjeta-instrumento {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+  padding: 2.5rem 1.5rem 2rem;
+  background-color: var(--bg-card);
+  border-radius: 18px 18px 8px 8px;
+  border-top: 4px solid var(--acento);
+  text-decoration: none;
+  color: var(--texto-claro);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tarjeta-piano    { --acento: var(--accent-gold); }
+.tarjeta-guitarra { --acento: var(--accent-coral); }
+.tarjeta-bateria  { --acento: var(--accent-teal); }
+
+.icono-instrumento {
+  width: 56px;
+  height: 56px;
+  color: var(--acento);
+}
+
+.tarjeta-instrumento h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.etiqueta-tarjeta {
+  color: var(--texto-muted);
+  font-size: 0.9rem;
+}
+
+.tarjeta-instrumento:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px var(--acento), 0 12px 24px -8px var(--acento);
+}
+
+/* --- Pie de página --- */
+.pie-pagina {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--texto-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(244, 241, 232, 0.08);
+}
+
+/* --- Accesibilidad: foco visible --- */
+a:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 480px) {
+  .encabezado { padding: 3.5rem 1rem 3rem; }
+  main { padding: 2rem 1rem 3rem; }
+}
+
+
+/* --- Encabezado de instrumento --- */
+.encabezado-instrumento {
+  padding: 3rem 1.5rem 2.5rem;
+}
+
+.enlace-volver {
+  display: inline-block;
+  color: var(--texto-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.enlace-volver:hover {
+  color: var(--accent-gold);
+}
+
+.contenedor-instrumento {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Piano --- */
+.piano {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 640px;
+  height: 220px;
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+}
+
+.tecla-blanca {
+  flex: 1;
+  background-color: var(--texto-claro);
+  color: var(--bg-dark);
+  border: 1px solid rgba(20, 23, 43, 0.15);
+  border-radius: 0 0 8px 8px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0.75rem;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+  user-select: none;
+}
+
+.tecla-blanca:hover,
+.tecla-blanca:active {
+  background-color: var(--accent-gold);
+}
+
+.tecla-negra {
+  position: absolute;
+  top: 8px;
+  width: 8%;
+  height: 60%;
+  background-color: #0a0c1a;
+  color: var(--texto-claro);
+  border-radius: 0 0 6px 6px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0.5rem;
+  font-size: 0.7rem;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.1s ease;
+  user-select: none;
+}
+
+.tecla-negra:hover,
+.tecla-negra:active {
+  background-color: var(--accent-coral);
+}
+
+/* --- Guitarra --- */
+.guitarra {
+  width: 100%;
+  max-width: 640px;
+  background-color: var(--bg-card);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+}
+
+.cuerda {
+  position: relative;
+  background-color: var(--texto-muted);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  transition: background-color 0.15s ease;
+}
+
+.cuerda-gruesa { height: 6px; }
+.cuerda-media  { height: 4px; }
+.cuerda-fina   { height: 2px; }
+
+.cuerda span {
+  position: absolute;
+  left: -1.8rem;
+  font-size: 0.85rem;
+  color: var(--texto-muted);
+}
+
+.cuerda:hover,
+.cuerda.cuerda-activa {
+  background-color: var(--accent-coral);
+}
+
+.cuerda.cuerda-activa {
+  animation: vibrar 0.3s ease;
+}
+
+@keyframes vibrar {
+  0%, 100% { transform: scaleY(1); }
+  25% { transform: scaleY(3); }
+  50% { transform: scaleY(1); }
+  75% { transform: scaleY(2); }
+}
+
+/* --- Batería --- */
+.bateria {
+  width: 100%;
+  max-width: 640px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.pieza {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--bg-dark);
+  user-select: none;
+  transition: transform 0.08s ease, filter 0.08s ease;
+  box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.6);
+}
+
+.pieza-platillo {
+  background-color: var(--accent-gold);
+}
+
+.pieza-tom {
+  background-color: var(--accent-teal);
+  color: var(--texto-claro);
+}
+
+.pieza-caja {
+  background-color: var(--texto-claro);
+}
+
+.pieza-bombo {
+  background-color: var(--accent-coral);
+  grid-column: span 1;
+  color: var(--texto-claro);
+}
+
+.pieza-crash {
+  background-color: var(--accent-gold);
+}
+
+.pieza.pieza-activa {
+  transform: scale(0.92);
+  filter: brightness(1.3);
+}

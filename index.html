@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Melody</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14172B;
+    --panel:#20233C;
+    --line:#2A2C42;
+    --text:#F4F1E8;
+    --text-muted:#9694AC;
+    --gold:#D4AF37;
+    --coral:#D85A30;
+    --teal:#5DCAA5;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--navy);color:var(--text);
+    font-family:'Work Sans', sans-serif;
+    background-image:repeating-linear-gradient(to bottom, transparent 0 39px, rgba(244,241,232,0.03) 39px 40px);
+  }
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 28px;border-bottom:1px solid var(--line);
+  }
+  .logo{display:flex;align-items:center;gap:10px;}
+  .logo-mark{
+    width:34px;height:34px;border-radius:50%;border:1.5px solid var(--teal);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;color:var(--teal);font-size:15px;
+  }
+  .logo-text h2{margin:0;font-family:'Fraunces',serif;font-weight:500;font-size:17px;}
+  .logo-text span{font-size:11px;color:var(--text-muted);}
+
+  main{max-width:920px;margin:0 auto;padding:40px 24px 60px;}
+  main h1{font-family:'Fraunces',serif;font-weight:500;font-size:24px;margin:0 0 28px;}
+
+  .grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  }
+  @media (max-width:720px){ .grid{grid-template-columns:repeat(2,1fr);} }
+
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:22px 14px 18px;text-align:center;text-decoration:none;color:var(--text);
+    display:flex;flex-direction:column;align-items:center;gap:12px;
+    transition:transform 0.15s ease, border-color 0.15s ease;
+  }
+  .card:hover{transform:translateY(-3px);border-color:var(--coral);}
+  .card svg{width:52px;height:52px;}
+  .card span{font-size:13px;}
+
+  footer{
+    text-align:center;padding:30px 20px;color:var(--text-muted);font-size:12px;
+    border-top:1px solid var(--line);
+  }
+  footer a{color:var(--teal);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">M</div>
+    <div class="logo-text">
+      <h2>Music Melody</h2>
+      <span>menú principal</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <h1>Elige un instrumento</h1>
+  <div class="grid">
+
+    <a class="card" href="piano.html">
+      <svg viewBox="0 0 60 60" fill="none" stroke="var(--gold)" stroke-width="1.6"><rect x="8" y="16" width="44" height="30" rx="2"/><line x1="18" y1="16" x2="18" y2="38"/><line x1="28" y1="16" x2="28" y2="38"/><line x1="38" y1="16" x2="38" y2="38"/><line x1="48" y1="16" x2="48" y2="38"/></svg>
+      <span>Piano</span>
+    </a>
+
+    <a class="card" href="guitarra.html">
+      <svg viewBox="0 0 60 60" fill="none" stroke="var(--coral)" stroke-width="1.6"><circle cx="30" cy="40" r="14"/><path d="M26 26 Q24 12 30 6"/><line x1="30" y1="6" x2="30" y2="26"/></svg>
+      <span>Guitarra</span>
+    </a>
+
+    <a class="card" href="bateria.html">
+      <svg viewBox="0 0 60 60" fill="none" stroke="var(--teal)" stroke-width="1.6"><ellipse cx="30" cy="20" rx="18" ry="7"/><path d="M12 20 L12 40 Q12 47 30 47 Q48 47 48 40 L48 20"/></svg>
+      <span>Batería</span>
+    </a>
+
+    <a class="card" href="violin.html">
+      <svg viewBox="0 0 60 60" fill="none" stroke="var(--gold)" stroke-width="1.6"><path d="M24 10 Q30 4 36 10 L34 26 Q40 34 36 44 Q30 52 24 44 Q20 34 26 26 Z"/><line x1="30" y1="4" x2="30" y2="52"/></svg>
+      <span>Violín</span>
+    </a>
+
+    <a class="card" href="flauta.html">
+      <svg viewBox="0 0 60 60" fill="none" stroke="var(--coral)" stroke-width="1.6"><line x1="10" y1="30" x2="50" y2="30"/><circle cx="18" cy="30" r="1.6" fill="var(--coral)"/><circle cx="26" cy="30" r="1.6" fill="var(--coral)"/><circle cx="34" cy="30" r="1.6" fill="var(--coral)"/><circle cx="42" cy="30" r="1.6" fill="var(--coral)"/></svg>
+      <span>Flauta</span>
+    </a>
+
+    <a class="card" href="ukelele.html">
+      <svg viewBox="0 0 60 60" fill="none" stroke="var(--teal)" stroke-width="1.6"><circle cx="30" cy="38" r="11"/><path d="M27 27 Q26 14 30 8"/><line x1="30" y1="8" x2="30" y2="27"/></svg>
+      <span>Ukelele</span>
+    </a>
+
+    <a class="card" href="tarka.html">
+      <svg viewBox="0 0 60 60" fill="none" stroke="var(--gold)" stroke-width="1.6"><rect x="22" y="8" width="8" height="44" rx="3"/><line x1="26" y1="16" x2="26" y2="16"/><circle cx="26" cy="18" r="1.4" fill="var(--gold)"/><circle cx="26" cy="26" r="1.4" fill="var(--gold)"/><circle cx="26" cy="34" r="1.4" fill="var(--gold)"/><circle cx="26" cy="42" r="1.4" fill="var(--gold)"/></svg>
+      <span>Tarka</span>
+    </a>
+
+    <a class="card" href="zampona.html">
+      <svg viewBox="0 0 60 60" fill="none" stroke="var(--coral)" stroke-width="1.6"><line x1="16" y1="50" x2="14" y2="14"/><line x1="24" y1="50" x2="23" y2="20"/><line x1="32" y1="50" x2="32" y2="26"/><line x1="40" y1="50" x2="41" y2="20"/><line x1="48" y1="50" x2="46" y2="14"/></svg>
+      <span>Zampoña</span>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  Music Melody — proyecto de grado &middot; <a href="encuesta.html">danos tu opinión en la encuesta</a>
+</footer>
+
+</body>
+</html>
